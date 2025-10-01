@@ -2,22 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Un regalo especial 🌼</title>
+  <title>Regalo para Milena 🌼</title>
   <style>
     body {
+      margin: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #fff8dc, #ffe5b4);
       font-family: 'Arial', sans-serif;
-      margin: 0;
+      background: linear-gradient(to top, #c8f2c8, #a2e0ff); /* Césped + cielo */
+      overflow: hidden;
     }
 
     .container {
       text-align: center;
     }
 
+    /* Sobre */
     .sobre {
       width: 200px;
       height: 150px;
@@ -25,9 +27,9 @@
       position: relative;
       margin: auto;
       cursor: pointer;
-      transition: transform 0.4s ease;
       border-radius: 6px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease;
     }
 
     .sobre:hover {
@@ -43,30 +45,48 @@
       border-left: 100px solid transparent;
       border-right: 100px solid transparent;
       border-bottom: 75px solid #e76f51;
+      transition: transform 1s ease;
+      transform-origin: bottom center;
     }
 
-    /* Flor oculta al inicio */
+    /* Flor amarilla */
     .flor {
       font-size: 100px;
       opacity: 0;
       transform: scale(0);
+      color: #FFD700;
       transition: all 2s ease;
       margin-top: 20px;
     }
 
-    /* Estado cuando florece */
     .flor.activa {
       opacity: 1;
       transform: scale(1);
     }
 
-    /* Mensaje oculto */
+    /* Mensaje */
     .mensaje {
       display: none;
       font-size: 22px;
       margin-top: 15px;
       color: #333;
       font-weight: bold;
+    }
+
+    /* Opcional: pequeños pétalos de fondo */
+    .petalo {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ffeb3b;
+      border-radius: 50%;
+      animation: caer 8s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes caer {
+      0% { transform: translateY(-50px) rotate(0deg); }
+      100% { transform: translateY(600px) rotate(360deg); }
     }
   </style>
 </head>
@@ -81,18 +101,12 @@
 
   <script>
     function abrir() {
-      // Oculta el sobre
-      document.querySelector(".sobre").style.display = "none";
+      // Animar la tapa del sobre (gira)
+      const tapa = document.querySelector(".tapa");
+      tapa.style.transform = "rotateX(-180deg)";
 
-      // Muestra la flor con animación
-      const flor = document.getElementById("flor");
-      flor.classList.add("activa");
-
-      // Muestra el mensaje después de un ratito
+      // Ocultar el sobre después de 1s
       setTimeout(() => {
-        document.getElementById("mensaje").style.display = "block";
-      }, 2000);
-    }
-  </script>
-</body>
-</html>
+        document.querySelector(".sobre").style.display = "none";
+
+        //
