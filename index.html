@@ -4,109 +4,44 @@
   <meta charset="UTF-8">
   <title>Regalo para Milena 🌼</title>
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to top, #c8f2c8, #a2e0ff); /* Césped + cielo */
-      overflow: hidden;
-    }
-
-    .container {
-      text-align: center;
-    }
-
-    /* Sobre */
-    .sobre {
-      width: 200px;
-      height: 150px;
-      background: #f4a261;
-      position: relative;
-      margin: auto;
-      cursor: pointer;
-      border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transition: transform 0.4s ease;
-    }
-
-    .sobre:hover {
-      transform: scale(1.05);
-    }
-
-    .tapa {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 100px solid transparent;
-      border-right: 100px solid transparent;
-      border-bottom: 75px solid #e76f51;
-      transition: transform 1s ease;
-      transform-origin: bottom center;
-    }
-
-    /* Flor amarilla */
-    .flor {
-      font-size: 100px;
-      opacity: 0;
-      transform: scale(0);
-      color: #FFD700;
-      transition: all 2s ease;
-      margin-top: 20px;
-    }
-
-    .flor.activa {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Mensaje */
-    .mensaje {
-      display: none;
-      font-size: 22px;
-      margin-top: 15px;
-      color: #333;
-      font-weight: bold;
-    }
-
-    /* Opcional: pequeños pétalos de fondo */
-    .petalo {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #ffeb3b;
-      border-radius: 50%;
-      animation: caer 8s linear infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes caer {
-      0% { transform: translateY(-50px) rotate(0deg); }
-      100% { transform: translateY(600px) rotate(360deg); }
-    }
+    body {margin:0; height:100vh; display:flex; justify-content:center; align-items:center; font-family:Arial,sans-serif; background:linear-gradient(to top, #c8f2c8, #a2e0ff); overflow:hidden;}
+    .container{text-align:center;}
+    .sobre{width:200px; height:150px; background:#f4a261; position:relative; margin:auto; cursor:pointer; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.2); transition:transform 0.4s ease;}
+    .sobre:hover{transform:scale(1.05);}
+    .tapa{position:absolute; top:0; left:0; width:0; height:0; border-left:100px solid transparent; border-right:100px solid transparent; border-bottom:75px solid #e76f51; transition:transform 1s ease; transform-origin:bottom center;}
+    .flor{font-size:100px; opacity:0; transform:scale(0); color:#FFD700; transition:all 2s ease; margin-top:20px;}
+    .flor.activa{opacity:1; transform:scale(1);}
+    .mensaje{display:none; font-size:22px; margin-top:15px; color:#333; font-weight:bold;}
+    .petalo{position:absolute; width:10px; height:10px; background:#ffeb3b; border-radius:50%; animation:caer 8s linear infinite; opacity:0.8;}
+    @keyframes caer{0%{transform:translateY(-50px) rotate(0deg);}100%{transform:translateY(600px) rotate(360deg);}}
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="sobre" onclick="abrir()">
-      <div class="tapa"></div>
-    </div>
+    <div class="sobre" onclick="abrir()"><div class="tapa"></div></div>
     <div id="flor" class="flor">🌼</div>
     <div id="mensaje" class="mensaje">Sos mi salvia divinorum... Milena 💛</div>
   </div>
-
   <script>
-    function abrir() {
-      // Animar la tapa del sobre (gira)
-      const tapa = document.querySelector(".tapa");
-      tapa.style.transform = "rotateX(-180deg)";
-
-      // Ocultar el sobre después de 1s
-      setTimeout(() => {
-        document.querySelector(".sobre").style.display = "none";
-
-        //
+    function abrir(){
+      const tapa=document.querySelector(".tapa");
+      tapa.style.transform="rotateX(-180deg)";
+      setTimeout(()=>{
+        document.querySelector(".sobre").style.display="none";
+        const flor=document.getElementById("flor");
+        flor.classList.add("activa");
+        setTimeout(()=>{document.getElementById("mensaje").style.display="block";},2000);
+      },1000);
+    }
+    for(let i=0;i<15;i++){
+      let p=document.createElement("div");
+      p.className="petalo";
+      p.style.left=Math.random()*window.innerWidth+"px";
+      p.style.animationDuration=(5+Math.random()*5)+"s";
+      p.style.width=(5+Math.random()*10)+"px";
+      p.style.height=p.style.width;
+      document.body.appendChild(p);
+    }
+  </script>
+</body>
+</html>
